@@ -171,7 +171,7 @@ class Rectangle(Shape):
     A rectangle.
     """
 
-    def __init__(self, *children, position=None, size=None, **kwargs):
+    def __init__(self, *children, position=None, size=None, padding=None, margin=None, **kwargs):
         """
         Create a new Rectangle object.
         """
@@ -180,8 +180,18 @@ class Rectangle(Shape):
         if position is None:
             position = (20, 20)
         self.position = Coordinate(position)
+
+#         Padding
+        if padding is None:
+            padding = (20, 10)
+        self.padding = padding
         if size is None:
-            size = (40, 10)
+            if self.children:
+                c = self.children[0]
+                size = (c.width+self.padding[0]*2, c.height+self.padding[1]*2)
+            else:
+                size = (40, 10)
+
         self.size = size
         self.kwargs = kwargs
 #         print(type(self.position.tuple()[0]), self.size, self.kwargs)
