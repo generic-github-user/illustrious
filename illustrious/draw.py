@@ -68,6 +68,16 @@ class Diagram:
                 raise TypeError(f'All unnamed arguments passed to the Diagram initializer must be either Object (sub)class instances or lists/tuples of such instances; received object of type {type(obj).__name__}')
         self.path = path
         self.profile = profile
+    def render(self):
+        self.svg = svgwrite.Drawing(self.path, size=(200, 200), profile=self.profile)
+        for obj in self.objects:
+            self.svg.add(obj.render(self.svg))
+        self.svg.save()
+        return self
+    def show(self):
+        display(SVG(filename=self.path))
+        return self
+
 # Cell
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
