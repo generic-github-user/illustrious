@@ -121,7 +121,13 @@ class Diagram:
     def render(self):
         self.svg = svgwrite.Drawing(self.path, size=self.dimensions, profile=self.profile)
         for obj in self.objects:
-            self.svg.add(obj.render(self.svg))
+            obj_render = obj.render(self.svg)
+            if isinstance(obj_render, (list, tuple)):
+                for subobj in obj_render:
+                    self.svg.add(subobj)
+#             elif isinstance(obj, Object):
+            else:
+                self.svg.add(obj_render)
         self.svg.save()
         return self
     def show(self):
