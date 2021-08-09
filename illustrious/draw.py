@@ -18,3 +18,9 @@ class Coordinate:
             self.pos = np.array(xy)
         else:
             self.pos = xy
+
+# Cell
+class Object:
+    def __init__(self, *children, **kwargs):
+#         if children is None
+        self.children = children
