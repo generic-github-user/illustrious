@@ -6,6 +6,8 @@ __all__ = ['Coordinate', 'Object', 'Shape', 'Circle', 'Text', 'Diagram', 'Rectan
 from IPython.display import SVG, display
 import svgwrite
 import numpy as np
+import random
+import string
 
 # Cell
 class Coordinate:
@@ -135,7 +137,12 @@ class Diagram:
                 self.objects.insert(0, background)
         self.path = path
         self.profile = profile
+
     def render(self):
+        """
+        Render the diagram to an SVG image file.
+        """
+
         self.svg = svgwrite.Drawing(self.path, size=self.dimensions, profile=self.profile)
         for obj in self.objects:
             obj_render = obj.render(self.svg)
@@ -147,7 +154,14 @@ class Diagram:
                 self.svg.add(obj_render)
         self.svg.save()
         return self
-    def show(self):
+
+    def show(self, render=False):
+        """
+        Display the generated SVG image in an interactive environment/IPython notebook.
+        """
+
+        if render:
+            self.render()
         display(SVG(filename=self.path))
         return self
 
