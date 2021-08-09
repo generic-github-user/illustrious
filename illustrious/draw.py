@@ -28,22 +28,38 @@ class Coordinate:
 # Cell
 class Object:
     def __init__(self, *children, **kwargs):
+        """
+        Create a new Object instance.
+        """
+
 #         if children is None
         self.children = children
 
 # Cell
 class Shape(Object):
-    def __init__(self, *children):
-        super().__init__(*children)
+    def __init__(self, *children, **kwargs):
+        """
+        Create a new Shape object.
+        """
+
+        super().__init__(*children, **kwargs)
 
 # Cell
 class Circle(Shape):
     def __init__(self, *children):
+        """
+        Create a new Circle object.
+        """
+
         super().__init__(*children)
 
 # Cell
 class Text(Object):
-    def __init__(self, text=None, position=None, fill='white', font_size=12, rotation=None, children=None):
+    def __init__(self, text=None, position=None, fill='black', font_size=12, rotation=None, children=None):
+        """
+        Create a new Text object.
+        """
+
         if children is None:
             children = []
         super().__init__(*children)
@@ -64,6 +80,10 @@ class Text(Object):
 # Cell
 class Diagram:
     def __init__(self, *objects, path='./diagram1.svg', profile='full', background='white', dimensions=None):
+        """
+        Create a new Diagram object.
+        """
+
         self.objects = []
         if dimensions is None:
             dimensions = (200, 200)
@@ -90,6 +110,10 @@ class Diagram:
 # Cell
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
+        """
+        Create a new Rectangle object.
+        """
+
         super().__init__(*children)
         if position is None:
             position = (20, 20)
