@@ -84,21 +84,27 @@ class Text(Object):
         if children is None:
             children = []
         super().__init__(*children)
-        self.text = text
+        self.text = str(text)
         if position is None:
             position = (20, 20)
         self.position = Coordinate(position)
         self.fill = fill
-        if isinstance(font_size, (int,)):
-            font_size = f'{font_size}px'
+#         if isinstance(font_size, (int,)):
+#             font_size = f'{font_size}px'
+        self.font_size_string = f'{font_size}px'
         self.font_size = font_size
         self.rotation = rotation
+
+#         Estimate dimensions of text
+        self.width = self.font_size * 0.5 * len(self.text)
+        self.height = self.font_size
 
         self.drawer = 'text'
 #     def alist(self, *args, **kwargs):
 #         return Text(*args, children=[])
+
     def render(self, svg):
-        return svg.text(self.text, insert=self.get_position().tuple(), fill=self.fill, font_size=self.font_size, rotate=self.rotation)
+        return svg.text(self.text, insert=self.get_position().tuple(), fill=self.fill, font_size=self.font_size_string, rotate=self.rotation)
 
 # Cell
 class Diagram:
