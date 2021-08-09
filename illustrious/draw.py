@@ -96,4 +96,7 @@ class Rectangle(Shape):
         self.kwargs = kwargs
 #         print(type(self.position.tuple()[0]), self.size, self.kwargs)
     def render(self, svg):
-        return svg.rect(insert=self.position.tuple(), size=self.size, **self.kwargs)
+        result = [svg.rect(insert=self.position.tuple(), size=self.size, **self.kwargs)]
+        result.extend([c.render(svg) for c in self.children])
+        return result
+
