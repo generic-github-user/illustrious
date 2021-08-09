@@ -6,3 +6,15 @@ __all__ = ['Coordinate', 'Object', 'Shape', 'Circle', 'Text', 'Diagram', 'Rectan
 from IPython.display import SVG, display
 import svgwrite
 import numpy as np
+
+# Cell
+class Coordinate:
+    def __init__(self, xy=None, y=None):
+        if xy is None:
+            xy = [0, 0]
+        if xy and y:
+            self.pos = np.array([xy, y])
+        elif isinstance(xy, (list, tuple)):
+            self.pos = np.array(xy)
+        else:
+            self.pos = xy
