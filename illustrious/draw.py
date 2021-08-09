@@ -106,7 +106,12 @@ class Diagram:
             elif isinstance(obj, Object):
                 self.objects.append(obj)
             else:
-                raise TypeError(f'All unnamed arguments passed to the Diagram initializer must be either Object (sub)class instances or lists/tuples of such instances; received object of type {type(obj).__name__}')
+                raise TypeError(f'All unnamed arguments passed to the Diagram initializer must be either Object (sub)class instances or lists/tuples of such instances; received object {obj} of type {type(obj).__name__}')
+        if background is not None:
+            if isinstance(background, str):
+                self.objects.insert(0, Rectangle(fill=background, position=(0, 0), size=self.dimensions))
+            elif isinstance(background, Object):
+                self.objects.insert(0, background)
         self.path = path
         self.profile = profile
     def render(self):
