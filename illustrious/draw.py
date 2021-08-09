@@ -91,7 +91,11 @@ class Diagram:
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
         super().__init__(*children)
+        if position is None:
+            position = (20, 20)
         self.position = Coordinate(position)
+        if size is None:
+            size = (40, 10)
         self.size = size
         self.kwargs = kwargs
 #         print(type(self.position.tuple()[0]), self.size, self.kwargs)
