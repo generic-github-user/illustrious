@@ -38,6 +38,15 @@ class Object:
 
 #         if children is None
         self.children = children
+        for c in self.children:
+            c.parent = self
+#             c.position_absolute =
+
+    def get_position(self):
+        if hasattr(self, 'parent'):
+            return self.position + self.parent.position
+        else:
+            return self.position
 
 # Cell
 class Shape(Object):
@@ -89,7 +98,7 @@ class Text(Object):
 #     def alist(self, *args, **kwargs):
 #         return Text(*args, children=[])
     def render(self, svg):
-        return svg.text(self.text, insert=self.position.tuple(), fill=self.fill, font_size=self.font_size, rotate=self.rotation)
+        return svg.text(self.text, insert=self.get_position().tuple(), fill=self.fill, font_size=self.font_size, rotate=self.rotation)
 
 # Cell
 class Diagram:
