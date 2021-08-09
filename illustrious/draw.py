@@ -50,6 +50,10 @@ class Text(Object):
         self.rotation = rotation
 
         self.drawer = 'text'
+#     def alist(self, *args, **kwargs):
+#         return Text(*args, children=[])
+    def render(self, svg):
+        return svg.text(self.text, insert=self.position.tuple(), fill=self.fill, font_size=self.font_size, rotate=self.rotation)
 # Cell
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
@@ -58,3 +62,5 @@ class Rectangle(Shape):
         self.size = size
         self.kwargs = kwargs
 #         print(type(self.position.tuple()[0]), self.size, self.kwargs)
+    def render(self, svg):
+        return svg.rect(insert=self.position.tuple(), size=self.size, **self.kwargs)
