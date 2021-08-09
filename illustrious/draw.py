@@ -46,6 +46,10 @@ class Shape(Object):
 
 # Cell
 class Circle(Shape):
+    """
+    A circle.
+    """
+
     def __init__(self, *children):
         """
         Create a new Circle object.
@@ -55,6 +59,10 @@ class Circle(Shape):
 
 # Cell
 class Text(Object):
+    """
+    Some text.
+    """
+
     def __init__(self, text=None, position=None, fill='black', font_size=12, rotation=None, children=None):
         """
         Create a new Text object.
@@ -79,6 +87,10 @@ class Text(Object):
 
 # Cell
 class Diagram:
+    """
+    A diagram or illustration, which contains a set of objects to render and additional properties about the resulting image.
+    """
+
     def __init__(self, *objects, path='./diagram1.svg', profile='full', background='white', dimensions=None):
         """
         Create a new Diagram object.
@@ -109,6 +121,10 @@ class Diagram:
 
 # Cell
 class Rectangle(Shape):
+    """
+    A rectangle.
+    """
+
     def __init__(self, *children, position=None, size=None, **kwargs):
         """
         Create a new Rectangle object.
