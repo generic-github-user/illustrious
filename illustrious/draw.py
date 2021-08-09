@@ -27,6 +27,10 @@ class Coordinate:
 
 # Cell
 class Object:
+    """
+    A generic graphics object, which usually maps directly to an SVG element. Examples include shapes, text, lines, etc. These can also be nested, and certain relative properties (e.g., position) of child objects will inherit their base values from parent objects.
+    """
+
     def __init__(self, *children, **kwargs):
         """
         Create a new Object instance.
