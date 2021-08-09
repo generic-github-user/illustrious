@@ -176,3 +176,15 @@ class Flowchart(Diagram):
     """
     A generic flowchart, typically used to present some process or system that carries out an operation over time. The general form is a directed graph with nodes connected by arrows/edges; this class makes it easier to create flowchart-style diagrams from primitives, for example a list of strings or images. This cuts down on the boilerplate needed to build common types of diagrams.
     """
+    def __init__(self, *objects, direction='down', **kwargs):
+        """
+        Create a new Flowchart object.
+        """
+
+        objects = [obj if isinstance(obj, Object) else Rectangle(Text(text=obj), fill='lightblue', opacity=0.5) for obj in objects]
+        for i, obj in enumerate(objects):
+            if direction == 'down':
+                obj.position = Coordinate((30, i*20))
+
+        print(objects)
+        super().__init__(*objects, **kwargs)
