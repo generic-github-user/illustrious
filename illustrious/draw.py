@@ -54,6 +54,20 @@ class Text(Object):
 #         return Text(*args, children=[])
     def render(self, svg):
         return svg.text(self.text, insert=self.position.tuple(), fill=self.fill, font_size=self.font_size, rotate=self.rotation)
+
+# Cell
+class Diagram:
+    def __init__(self, *objects, path='./diagram1.svg', profile='full'):
+        self.objects = []
+        for obj in objects:
+            if isinstance(obj, (list, tuple)):
+                self.objects.extend(obj)
+            elif isinstance(obj, Object):
+                self.objects.append(obj)
+            else:
+                raise TypeError(f'All unnamed arguments passed to the Diagram initializer must be either Object (sub)class instances or lists/tuples of such instances; received object of type {type(obj).__name__}')
+        self.path = path
+        self.profile = profile
 # Cell
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
