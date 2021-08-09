@@ -18,6 +18,12 @@ class Coordinate:
             self.pos = np.array(xy)
         else:
             self.pos = xy
+        self.x = self.pos[0]
+        self.y = self.pos[1]
+    def __add__(self, b):
+        return Coordinate(self.pos + b.pos)
+    def tuple(self):
+        return tuple(map(int, self.pos))
 
 # Cell
 class Object:
