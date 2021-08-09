@@ -63,8 +63,11 @@ class Text(Object):
 
 # Cell
 class Diagram:
-    def __init__(self, *objects, path='./diagram1.svg', profile='full'):
+    def __init__(self, *objects, path='./diagram1.svg', profile='full', background='white', dimensions=None):
         self.objects = []
+        if dimensions is None:
+            dimensions = (200, 200)
+        self.dimensions = dimensions
         for obj in objects:
             if isinstance(obj, (list, tuple)):
                 self.objects.extend(obj)
@@ -75,7 +78,7 @@ class Diagram:
         self.path = path
         self.profile = profile
     def render(self):
-        self.svg = svgwrite.Drawing(self.path, size=(200, 200), profile=self.profile)
+        self.svg = svgwrite.Drawing(self.path, size=self.dimensions, profile=self.profile)
         for obj in self.objects:
             self.svg.add(obj.render(self.svg))
         self.svg.save()
