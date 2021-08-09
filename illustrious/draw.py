@@ -24,3 +24,22 @@ class Object:
     def __init__(self, *children, **kwargs):
 #         if children is None
         self.children = children
+
+# Cell
+class Shape(Object):
+    def __init__(self, *children):
+        super().__init__(*children)
+
+# Cell
+class Circle(Shape):
+    def __init__(self, *children):
+        super().__init__(*children)
+
+# Cell
+class Rectangle(Shape):
+    def __init__(self, *children, position=None, size=None, **kwargs):
+        super().__init__(*children)
+        self.position = Coordinate(position)
+        self.size = size
+        self.kwargs = kwargs
+#         print(type(self.position.tuple()[0]), self.size, self.kwargs)
