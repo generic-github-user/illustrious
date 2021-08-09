@@ -36,6 +36,21 @@ class Circle(Shape):
         super().__init__(*children)
 
 # Cell
+class Text(Object):
+    def __init__(self, text=None, position=None, fill='white', font_size=12, rotation=None, children=None):
+        if children is None:
+            children = []
+        super().__init__(*children)
+        self.text = text
+        self.position = Coordinate(position)
+        self.fill = fill
+        if isinstance(font_size, (int,)):
+            font_size = f'{font_size}px'
+        self.font_size = font_size
+        self.rotation = rotation
+
+        self.drawer = 'text'
+# Cell
 class Rectangle(Shape):
     def __init__(self, *children, position=None, size=None, **kwargs):
         super().__init__(*children)
