@@ -161,3 +161,9 @@ class Rectangle(Shape):
         result.extend([c.render(svg) for c in self.children])
         return result
 
+# Cell
+
+class Flowchart(Diagram):
+    """
+    A generic flowchart, typically used to present some process or system that carries out an operation over time. The general form is a directed graph with nodes connected by arrows/edges; this class makes it easier to create flowchart-style diagrams from primitives, for example a list of strings or images. This cuts down on the boilerplate needed to build common types of diagrams.
+    """
